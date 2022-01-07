@@ -1,37 +1,39 @@
+'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('restaurantmenus', {
+    up: async(queryInterface, Sequelize) => {
+        await queryInterface.createTable('restaurantmenus', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.INTEGER,
+                type: Sequelize.INTEGER
             },
             content: {
-                type: Sequelize.STRING,
-                allowNull: false,
+                type: Sequelize.STRING
             },
             price: {
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
+                type: Sequelize.DATE
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
+                type: Sequelize.DATE
             },
             restaurantId: {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 references: {
-                    model: 'restaurant',
+                    model: 'restaurants',
                     key: 'id',
                     as: 'restaurantId',
                 },
             },
-        }),
-    down: (queryInterface /* , Sequelize */ ) =>
-        queryInterface.dropTable('restaurantmenus'),
+        });
+    },
+    down: async(queryInterface, Sequelize) => {
+        await queryInterface.dropTable('restaurantmenus');
+    }
 };
