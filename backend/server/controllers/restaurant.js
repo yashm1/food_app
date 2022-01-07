@@ -1,5 +1,5 @@
 const restaurant = require('../models').restaurant;
-
+const restaurantmenu = require('../models').restaurantmenu;
 module.exports = {
     create(req, res) {
         return restaurant
@@ -11,7 +11,12 @@ module.exports = {
     },
     list(req, res) {
         return restaurant
-            .all()
+            .findAll({
+                include: [{
+                    model: restaurantmenu,
+                    as: 'restaurantmenu',
+                }],
+            })
             .then(restaurant => res.status(200).send(restaurant))
             .catch(error => res.status(400).send(error));
     },
