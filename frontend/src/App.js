@@ -12,7 +12,8 @@ import Profile from "../src/components/profile";
 import BoardUser from "../src/components/board-user";
 import BoardModerator from "../src/components/board-mod";
 import BoardAdmin from "../src/components/board-admin";
-
+import menu from "../src/components/restaurant-menu";
+import Welcome from "../src/components/welcome"
 class App extends Component {
   constructor(props) {
     super(props);
@@ -46,16 +47,40 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            bezKoder
-          </Link>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <ul class="navbar-nav">
+            {currentUser ? (
+              <ul className="navbar-nav ml-auto">
+
+                <li className="nav-item">
+                  <Link to={"/home"} className="navbar-brand">
+                    Swiggy
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/home"} className="nav-link">
+                    Home
+                  </Link>
+                </li>
+
+              </ul>
+            ) : (
+              <ul className="navbar-nav ml-auto">
+
+
+                <li className="nav-item">
+                  <Link to={"/"} className="navbar-brand">
+                    Swiggy
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/"} className="nav-link">
+                    Home
+                  </Link>
+                </li>
+              </ul>
+            )}
+
 
             {showModeratorBoard && (
               <li className="nav-item">
@@ -80,50 +105,51 @@ class App extends Component {
                 </Link>
               </li>
             )}
-          </div>
+          </ul>
 
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
+            <ul className="navbar-nav ml-auto" >
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   {currentUser.username}
                 </Link>
               </li>
+
               <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
                   LogOut
                 </a>
               </li>
-            </div>
+            </ul>
           ) : (
-            <div className="navbar-nav ml-auto">
+            <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/login"} className="nav-link">
                   Login
                 </Link>
               </li>
 
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
+
+
+            </ul>
+          )
+          }
         </nav>
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path={["/"]} component={Welcome} />
+            <Route exact path="/home" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/user" component={BoardUser} />
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
+            <Route path="/menu/:id" component={menu} />
           </Switch>
         </div>
-      </div>
+      </div >
     );
   }
 }

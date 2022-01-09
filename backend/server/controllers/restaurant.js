@@ -5,6 +5,7 @@ module.exports = {
         return restaurant
             .create({
                 title: req.body.title,
+                content: req.body.content,
             })
             .then(restaurant => res.status(201).send(restaurant))
             .catch(error => res.status(400).send(error));
