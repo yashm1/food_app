@@ -7,9 +7,7 @@ const http = require('http');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-var corsOptions = {
-    origin: "https://61dc1c36df034fce0ae103c0--zealous-hoover-110215.netlify.app/"
-};
+
 const db = require('./server/models');
 const Role = db.role;
 const port = process.env.PORT || 8000;
@@ -39,11 +37,11 @@ function initial() {
     });
 }
 
-app.use(cors(corsOptions));
+app.use(cors());
 // Require our routes into the application.
-require('../backend/server/routes/index')(app);
-require('../backend/server/routes/auth')(app);
-require('../backend/server/routes/user')(app);
+require('./server/routes/index.js')(app);
+require('./server/routes/auth.js')(app);
+require('./server/routes/user.js')(app);
 app.get('*', (req, res) => res.status(200).send({
     message: 'Welcome to the beginning of nothingness.',
 }));
