@@ -3,6 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const app = express();
+const http = require('http');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,7 +12,10 @@ var corsOptions = {
 };
 const db = require('./server/models');
 const Role = db.role;
-
+const port = process.env.PORT || 8000;
+app.set('port', port);
+const server = http.createServer(app);
+server.listen(port);
 db.sequelize.sync();
 // db.sequelize.sync({
 //     force: false, // To create table if exists , so make it false
