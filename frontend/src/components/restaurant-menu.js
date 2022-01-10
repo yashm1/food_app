@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import image from '../images/food.jfif';
-import UserService from "../services/user-service";
+
 // import { Link } from 'react-router-dom';
 // // import menu from "./restaurant-menu";
 // import { useParams } from "react-router-dom";
@@ -15,7 +15,7 @@ export default class menu extends Component {
         };
     }
     async componentDidMount() {
-        const url = "http://127.0.0.1:8000/api/restaurant/" + this.state.value;
+        const url = "https://swiggi-app.herokuapp.com/api/restaurant/" + this.state.value;
         var id = this.state.value;
         console.log(id);
         console.log("hello")
@@ -38,7 +38,7 @@ export default class menu extends Component {
 
 
     render() {
-        const { content, value, menuinfo } = this.state;
+        const { content, menuinfo } = this.state;
 
         return (
             <div className="container" >

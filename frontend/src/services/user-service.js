@@ -1,8 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8000/api/test/';
-const restaurant_URL = 'http://localhost:8000/api/restuarant/';
+const API_URL = 'https://swiggi-app.herokuapp.com/api/test/';
+const restaurant_URL = 'https://swiggi-app.herokuapp.com/api/restuarant/';
 class UserService {
     getPublicContent() {
         return axios.get(API_URL + 'all');
@@ -12,7 +12,7 @@ class UserService {
     }
 
     getmenu(restaurantId) {
-        return axios.get('http://127.0.0.1:8000/api/restaurant/1');
+        return axios.get('https://swiggi-app.herokuapp.com/api/restaurant/1');
     }
     getUserBoard() {
         return axios.get(API_URL + 'user', { headers: authHeader() });
