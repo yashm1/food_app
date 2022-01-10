@@ -7,7 +7,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "https://61dc1c36df034fce0ae103c0--zealous-hoover-110215.netlify.app/"
 };
 const db = require('./server/models');
 const Role = db.role;
