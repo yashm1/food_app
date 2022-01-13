@@ -7,9 +7,8 @@
         "start:dev": "nodemon ./bin/www",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node app.js",
-        "heroku-postbuild": "cd ../backend && npm run start:dev"
+
     },
-    "web": "node ./backend/index.js",
     "author": "",
     "license": "ISC",
     "dependencies": {
