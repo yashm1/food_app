@@ -15,6 +15,7 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port);
 db.sequelize.sync();
+console.log("app started running on:", port);
 // db.sequelize.sync({
 //     force: false, // To create table if exists , so make it false
 //     alter: true // To update the table if exists , so make it true
